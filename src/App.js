@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+// import axios from 'axios';
+// import Details from './Details';
+import Character from './components/Character';
 
-const App = () => {
+// import styled from 'styled-components';
+
+export default function App(props) {
+  const [character, setCharacter] = useState([]);
+  const [info, setInfo] = useState(null);
+
+  const openDetails = id => {
+    setInfo(id);
+  }
+
+  const closeDetails = () => {
+    setInfo(null);
+  }
+
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
 
@@ -12,8 +28,7 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
+      <Character />
     </div>
   );
 }
-
-export default App;
