@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './App.css';
-// import axios from 'axios';
-// import Details from './Details';
 import Character from './components/Character';
 
-// import styled from 'styled-components';
+export default function App() {
+  const [characters, setCharacters] = useState([]);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    axios.get(`https://swapi.dev/api/people`)
+    .then(res => {
+        setCharacters(res.data);
+    })
+    .catch(err => {
+      console.error(err);
+      setError('The force is to strong for this one...')
+    })
+}, [])     
 
-export default function App(props) {
-  const [character, setCharacter] = useState([]);
-  const [info, setInfo] = useState(null);
-
-  const openDetails = id => {
-    setInfo(id);
-  }
-
-  const closeDetails = () => {
-    setInfo(null);
-  }
 
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
@@ -28,7 +29,11 @@ export default function App(props) {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
-      <Character />
+      {
+        characters.map(ch => {
+          return <Character info={ch}/>
+        })
+      } 
     </div>
   );
 }

@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Bio from './Character';
+import React from 'react';
 
 import styled from 'styled-components';
 
@@ -43,21 +41,11 @@ const StyledCharacter = styled.div `
 `
 
 export default function Character(props) {
-
-    const [characters, setCharacters] = useState([]);
-
-    useEffect(() => {
-        axios.get(`https://swapi.dev/api/people`)
-        .then(res => {
-            setCharacters(res.data);
-        })
-    }, [])     
-
     return (
         <StyledCharacter >
             <div>
-                {characters.map(person => <button key={person.name} >{person.name}</button>)}
+                <button>{props.info.name}</button>
             </div>
         </StyledCharacter >
     )
-} 
+}

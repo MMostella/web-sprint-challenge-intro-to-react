@@ -1,6 +1,6 @@
 export default {
     primaryColor: '#942911',
-    secondaryColor: 'royalblue',
+    secondaryColor: '#333333',
     black: 'black',
     white: 'white',
 }
